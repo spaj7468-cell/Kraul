@@ -1,58 +1,71 @@
 # Kraul Engine
 
-**The engine behind Arakul Studio.** A dedicated project for image-processing workflows, engine architecture, and a documented API.
+**Black × emerald engineering identity. The engine project associated with Arakul Studio.**
 
-- **Product / workspace:** [Arakul Studio](https://spaj7468-cell.github.io/Arakul/)
-- **Repository:** [spaj7468-cell/Kraul](https://github.com/spaj7468-cell/Kraul)
-- **Ecosystem:** [OuRi Corp](https://spaj7468-cell.github.io/ouri-corp/)
+Kraul Engine is intended to own reusable image-processing workflows, engine architecture and its technical API. Arakul Studio is the user-facing workspace; Kraul is a separate technical project.
 
-> **Documentation status:** initial foundation. The exact public API, runtime behavior, supported formats, and implementation status must be confirmed against source code before being described as stable or available.
+- **Documentation site:** https://spaj7468-cell.github.io/Kraul/
+- **Arakul Studio:** https://spaj7468-cell.github.io/Arakul/
+- **QKC Engine:** https://spaj7468-cell.github.io/qkc-engine/
+- **OuRi Corp:** https://spaj7468-cell.github.io/ouri-corp/
+- **Repository:** https://github.com/spaj7468-cell/Kraul
 
-## What Kraul is
+> **Important implementation status:** the current repository tree contains the documentation site and its Docker/Jekyll Pages workflow, but no engine runtime source files. Image-processing capabilities described below are project scope and design guidance, not claims that an operational API is already implemented.
 
-Kraul Engine is the engine layer associated with Arakul Studio. Arakul Studio is the user-facing workspace; Kraul is the separate technical project that can provide reusable image-processing capabilities and its own API.
+## Project boundaries
 
-The intended domain includes image processing and transformation, background removal and foreground isolation, handling transparent edges and alpha channels, reusable processing operations exposed through a documented API, and integration of engine capabilities into Arakul Studio and potentially other clients. These describe the project direction, not a guarantee that every workflow is already implemented.
-
-## Documentation map
-
-| Document | Purpose |
+| Project | Role |
 |---|---|
-| [Engine overview](./docs/OVERVIEW.md) | Role, scope, terminology, and system boundaries |
-| [API reference](./docs/API.md) | Public API inventory, signatures, parameters, results, and errors |
-| [Architecture](./docs/ARCHITECTURE.md) | Modules, data flow, and runtime boundaries |
-| [Roadmap and status](./docs/STATUS.md) | Implemented, in-progress, planned, and unverified features |
+| **Kraul Engine** | Intended image-processing engine, processing contracts and technical API |
+| **Arakul Studio** | User-facing creative workspace associated with Kraul |
+| **QKC Engine** | Separate dependency-free JavaScript quiz/test engine |
+| **OuRi Corp** | Wider project ecosystem |
 
-## API documentation policy
+## Intended domain
 
-Kraul has its own API. Public API documentation should be derived from the actual implementation and include exact exported names and signatures; accepted input types and supported image formats; parameter defaults and validation rules; return values and output formats; error cases and recovery guidance; runnable examples; and compatibility, performance, and security notes where relevant.
+The project direction includes image transformations, background removal and foreground isolation, alpha-channel and transparent-edge handling, reusable processing operations, integration with Arakul Studio, and an API documented from actual source code.
 
-No method names, endpoint URLs, package names, or output guarantees are invented in this starter documentation. They should be added after inspecting the real implementation.
+These areas must be individually verified before being labelled implemented. No model, processing algorithm, endpoint, package entry point or method signature is assumed by these docs.
 
-## Suggested repository structure
+## Documentation handbook
 
-```text
-Kraul/
-├── README.md
-├── index.html
-└── docs/
-    ├── OVERVIEW.md
-    ├── API.md
-    ├── ARCHITECTURE.md
-    └── STATUS.md
-```
+| Document | What it covers |
+|---|---|
+| [Getting started](./docs/GETTING_STARTED.md) | Repository map, contributor workflow and readiness criteria |
+| [Overview](./docs/OVERVIEW.md) | Purpose, scope, boundaries and status vocabulary |
+| [API reference](./docs/API.md) | Exact exports, signatures, inputs, outputs and errors |
+| [Architecture](./docs/ARCHITECTURE.md) | Module boundaries, data flow and runtime decisions |
+| [Image workflows](./docs/IMAGE_WORKFLOWS.md) | Input/output contracts, alpha, masks and acceptance criteria |
+| [Arakul integration](./docs/INTEGRATION.md) | Adapter boundaries, ownership and compatibility |
+| [Error model](./docs/ERROR_MODEL.md) | Proposed taxonomy, validation and safe recovery |
+| [Testing strategy](./docs/TESTING.md) | Unit, integration, visual, resource and deployment tests |
+| [Security and privacy](./docs/SECURITY.md) | Untrusted input, memory, network and metadata risks |
+| [Performance](./docs/PERFORMANCE.md) | Benchmarking, memory estimates and profiling |
+| [Contributing](./docs/CONTRIBUTING.md) | Source-backed changes and review requirements |
+| [Roadmap](./docs/ROADMAP.md) | Staged path toward a tested runtime |
+| [Glossary](./docs/GLOSSARY.md) | Shared technical terminology |
+| [FAQ](./docs/FAQ.md) | Current status, Docker, deployment and API questions |
+| [Status](./docs/STATUS.md) | Verified vs unverified implementation areas |
 
-## Relationship to other OuRi projects
+## How to read the status labels
 
-- **Arakul Studio** is the creative workspace built around the Kraul engine.
-- **Kraul Engine** owns its engine architecture and API documentation.
-- **QKC Engine** is a separate JavaScript quiz engine and is not part of Kraul's implementation.
-- **OuRi Corp** is the wider project ecosystem.
+- **Implemented** — current source and repeatable tests demonstrate the behavior.
+- **In progress** — implementation exists, but is incomplete or not fully verified.
+- **Planned** — proposed future work.
+- **Unverified** — insufficient source or test evidence.
 
-## Contributing to the documentation
+Do not promote a feature to implemented based only on a design document, a UI mock-up or a green documentation deployment.
 
-When documenting a capability, label it accurately as **implemented**, **in progress**, **planned**, or **unverified**. Prefer source-backed examples over speculative signatures. When a public API changes, update the API reference and examples together.
+## Documentation deployment
 
----
+The documentation site is built with Docker and Jekyll and published through GitHub Pages using GitHub Actions. A successful Jekyll build proves that the docs build step completed; publication additionally requires the Pages artifact upload and deploy job to succeed.
 
-© 2026 OuRi project ecosystem. License and package distribution details should be stated according to the license and metadata actually present in this repository.
+- [Actions runs](https://github.com/spaj7468-cell/Kraul/actions)
+- [Pages settings](https://github.com/spaj7468-cell/Kraul/settings/pages)
+- [Live docs](https://spaj7468-cell.github.io/Kraul/)
+
+## Next engineering milestone
+
+The next substantive engine milestone is not another marketing page: add the actual runtime source, select the supported runtime/distribution model, expose one small verified operation, and test it end-to-end. Then replace the API placeholders with exact signatures and executable examples.
+
+© 2026 OuRi project ecosystem.
