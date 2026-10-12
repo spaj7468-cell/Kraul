@@ -1,0 +1,21 @@
+# Kraul Engine glossary
+
+- **Alpha channel** — per-pixel transparency information, when present.
+- **API** — the public interface through which a caller requests behavior.
+- **Arakul Studio** — the user-facing creative workspace associated with Kraul Engine.
+- **Background removal** — an operation intended to separate a subject from a background; actual quality and availability require implementation evidence.
+- **Color space** — a defined representation of color values, such as sRGB.
+- **Decode** — converting encoded image bytes into a pixel representation.
+- **Encode** — converting processed pixels into a file or byte representation.
+- **Foreground isolation** — separating a subject from the rest of an image.
+- **Image dimensions** — image width and height in pixels.
+- **Input contract** — documented requirements for values accepted by an operation.
+- **Mask** — a per-pixel representation used to describe selection, opacity or another spatial property.
+- **Premultiplied alpha** — a representation where color channels have already been multiplied by alpha.
+- **Processing pipeline** — ordered stages that transform input into output.
+- **Public export** — a symbol intentionally exposed for consumers to call.
+- **Regression test** — a repeatable test that catches behavior changes from a known baseline.
+- **Resource ownership** — which component is responsible for releasing a buffer, worker, object URL or other resource.
+- **Source-verified** — confirmed by current source code and, where appropriate, tests.
+- **Unverified** — not yet demonstrated by source inspection or reproducible evidence.
+- **QKC Engine** — a separate dependency-free JavaScript quiz/test engine in the OuRi ecosystem; it is not Kraul's image-processing engine.
