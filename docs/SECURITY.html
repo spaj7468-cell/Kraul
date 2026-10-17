@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<meta name="description" content="This is a design checklist for future engine implementation. It is not a claim that a complete security review has been performed.">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Kraul/docs/SECURITY.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OuRi Corp">
+<meta property="og:title" content="Security and privacy considerations">
+<meta property="og:description" content="This is a design checklist for future engine implementation. It is not a claim that a complete security review has been performed.">
+<meta property="og:url" content="https://spaj7468-cell.github.io/Kraul/docs/SECURITY.html">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="stylesheet" href="../css/qkc-core.css">
+<link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="docnav">
+  <a class="brand" href="../index.html"><span class="mark">K</span><span class="brand__name">Kraul · docs</span></a>
+  <div class="docnav__right">
+    <button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></button>
+    <a class="btn btn--sm btn--ghost" href="../index.html">← Kraul home</a>
+  </div>
+</header>
+<main id="main" class="docwrap">
+<article class="doc">
+<h1 id="security-and-privacy-considerations">Security and privacy considerations</h1>
+<blockquote>
+<p>This is a design checklist for future engine implementation. It is not a claim that a complete security review has been performed.</p>
+</blockquote>
+<h2 id="1-treat-image-inputs-as-untrusted">1. Treat image inputs as untrusted</h2>
+<p>Files may be malformed, unexpectedly large or crafted to stress decoders. Validate declared and decoded dimensions, enforce size and pixel-count limits, handle decode failures and avoid unbounded allocations.</p>
+<p>Do not trust filename extensions or user-supplied MIME types as the only validation step.</p>
+<h2 id="2-resource-exhaustion">2. Resource exhaustion</h2>
+<p>Image memory usage can be much larger than the compressed file size. Apply limits before decoding where possible, account for width × height × channel count, and release temporary buffers after both success and failure.</p>
+<p>If concurrency is supported, define a limit and test how queued jobs behave under load.</p>
+<h2 id="3-browser-boundaries">3. Browser boundaries</h2>
+<p>If the engine runs in a browser, document which APIs it requires and whether it makes network requests. Avoid dynamic execution of user-controlled strings. Treat remote URLs and cross-origin behavior explicitly rather than silently fetching arbitrary resources.</p>
+<p>If workers or object URLs are used, define lifecycle and cleanup rules.</p>
+<h2 id="4-privacy-by-design">4. Privacy by design</h2>
+<p>State clearly whether input images stay on the device or are sent to a remote service. Never claim local-only processing unless the implementation and network behavior prove it. Avoid logging image contents or personal metadata. Define whether EXIF or other embedded metadata is preserved, removed or normalized.</p>
+<h2 id="5-dependency-and-supply-chain-hygiene">5. Dependency and supply-chain hygiene</h2>
+<p>When dependencies are introduced, pin and review versions; record license and purpose; update lockfiles consistently; scan for known vulnerabilities where suitable; and avoid loading executable assets from mutable third-party URLs in production without a reason.</p>
+<p>If the engine remains dependency-free, verify that claim against the actual package and build output.</p>
+<h2 id="6-error-disclosure">6. Error disclosure</h2>
+<p>Expose safe, actionable messages to end users. Keep technical details in controlled diagnostics and redact secrets, local paths and private payloads.</p>
+<h2 id="7-security-acceptance-checklist">7. Security acceptance checklist</h2>
+<ul>
+<li>[ ] Input type and size limits are documented and enforced.</li>
+<li>[ ] Malformed and oversized fixtures fail safely.</li>
+<li>[ ] Temporary resources are released on success, error and cancellation.</li>
+<li>[ ] Network behavior is documented and tested.</li>
+<li>[ ] Metadata handling is explicit.</li>
+<li>[ ] Dependencies and licenses are reviewed.</li>
+<li>[ ] No private payloads or credentials appear in logs.</li>
+</ul>
+<p>Every checkbox must be supported by evidence before it is marked complete.</p>
+</article>
+<aside class="docside" aria-label="Other guides">
+<a class="docside__i" href="API.html">Kraul Engine API reference</a>
+<a class="docside__i" href="ARCHITECTURE.html">Kraul Engine architecture</a>
+<a class="docside__i" href="CONTRIBUTING.html">Contributing to Kraul Engine</a>
+<a class="docside__i" href="ERROR_MODEL.html">Error model and recovery</a>
+<a class="docside__i" href="FAQ.html">Kraul Engine FAQ</a>
+<a class="docside__i" href="GETTING_STARTED.html">Kraul Engine — getting started</a>
+<a class="docside__i" href="GLOSSARY.html">Kraul Engine glossary</a>
+<a class="docside__i" href="IMAGE_WORKFLOWS.html">Image-processing workflows and contracts</a>
+<a class="docside__i" href="INTEGRATION.html">Arakul Studio integration</a>
+<a class="docside__i" href="OVERVIEW.html">Kraul Engine — overview</a>
+<a class="docside__i" href="PERFORMANCE.html">Performance and resource management</a>
+<a class="docside__i" href="ROADMAP.html">Kraul Engine roadmap</a>
+<a class="docside__i is-cur" href="SECURITY.html">Security and privacy considerations</a>
+<a class="docside__i" href="STATUS.html">Kraul Engine — implementation status</a>
+<a class="docside__i" href="TESTING.html">Testing and quality strategy</a>
+</aside>
+</main>
+<footer class="docfoot"><span>© 2026 OuRi · Kraul Engine handbook</span><span class="muted sm">собрано из docs/SECURITY.md</span></footer>
+<script src="../js/qkc-core.js" defer></script>
+</body></html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<meta name="description" content="Arakul Studio is the user-facing workspace. Kraul Engine is the separate engine project intended to provide reusable image-processing capabilities. QKC Engine is unrelated to image">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Kraul/docs/INTEGRATION.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OuRi Corp">
+<meta property="og:title" content="Arakul Studio integration">
+<meta property="og:description" content="Arakul Studio is the user-facing workspace. Kraul Engine is the separate engine project intended to provide reusable image-processing capabilities. QKC Engine is unrelated to image">
+<meta property="og:url" content="https://spaj7468-cell.github.io/Kraul/docs/INTEGRATION.html">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="stylesheet" href="../css/qkc-core.css">
+<link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="docnav">
+  <a class="brand" href="../index.html"><span class="mark">K</span><span class="brand__name">Kraul · docs</span></a>
+  <div class="docnav__right">
+    <button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></button>
+    <a class="btn btn--sm btn--ghost" href="../index.html">← Kraul home</a>
+  </div>
+</header>
+<main id="main" class="docwrap">
+<article class="doc">
+<h1 id="arakul-studio-integration">Arakul Studio integration</h1>
+<h2 id="1-product-boundary">1. Product boundary</h2>
+<p>Arakul Studio is the user-facing workspace. Kraul Engine is the separate engine project intended to provide reusable image-processing capabilities. QKC Engine is unrelated to image processing and remains a separate quiz/test engine.</p>
+<p>A clean boundary keeps interface decisions in Arakul and reusable processing contracts in Kraul. The precise integration mechanism is not yet verified from source.</p>
+<h2 id="2-integration-questions-to-answer-from-implementation">2. Integration questions to answer from implementation</h2>
+<p>Before choosing an adapter, determine whether Kraul is imported as a JavaScript module, loaded as a browser script, called through a worker, or exposed through a service; which side owns the source file and returned output; how large binary payloads cross the boundary; how errors and cancellation are represented; whether work runs on the main thread; whether any remote service or network request is involved; and how version compatibility is enforced.</p>
+<p>These are investigation questions, not claims about the current architecture.</p>
+<h2 id="3-recommended-adapter-responsibilities">3. Recommended adapter responsibilities</h2>
+<p>An Arakul-side adapter should, when applicable, validate UI state before invoking the engine; translate UI options into the documented engine contract; keep engine-specific details out of unrelated UI components; map structured engine errors to useful user-facing messages; track operation lifecycle and prevent stale results replacing newer selections; release temporary resources when a workflow is cancelled or a component is removed; and make integration tests possible without requiring a real user interaction for every case.</p>
+<h2 id="4-data-ownership">4. Data ownership</h2>
+<p>Document who owns each input and output. If object URLs are created, state which layer revokes them. If buffers are copied, document where copying occurs and why. If a worker is used, define message payloads and transfer semantics explicitly.</p>
+<p>Avoid retaining full-resolution source images longer than necessary. Do not place raw image bytes, private file paths or other user content in routine diagnostic logs.</p>
+<h2 id="5-version-compatibility">5. Version compatibility</h2>
+<p>When Kraul exposes a public package or stable interface, record the engine version or contract version expected by Arakul. If the interface changes, update both repositories in the same change window and include a compatibility test.</p>
+<h2 id="6-integration-test-matrix">6. Integration test matrix</h2>
+<p>At minimum, verify successful input-to-output flow; unsupported and corrupt input; cancellation and rapid repeated actions; missing engine or failed initialization; large input at the documented limit; output display and export; cleanup after success and failure; and graceful behavior when the engine version is incompatible.</p>
+<h2 id="7-current-status">7. Current status</h2>
+<p>The relationship between Arakul Studio and Kraul Engine is documented at the project level. Exact import paths, method names, message formats and production integration behavior require source evidence and should remain marked unverified until confirmed.</p>
+</article>
+<aside class="docside" aria-label="Other guides">
+<a class="docside__i" href="API.html">Kraul Engine API reference</a>
+<a class="docside__i" href="ARCHITECTURE.html">Kraul Engine architecture</a>
+<a class="docside__i" href="CONTRIBUTING.html">Contributing to Kraul Engine</a>
+<a class="docside__i" href="ERROR_MODEL.html">Error model and recovery</a>
+<a class="docside__i" href="FAQ.html">Kraul Engine FAQ</a>
+<a class="docside__i" href="GETTING_STARTED.html">Kraul Engine — getting started</a>
+<a class="docside__i" href="GLOSSARY.html">Kraul Engine glossary</a>
+<a class="docside__i" href="IMAGE_WORKFLOWS.html">Image-processing workflows and contracts</a>
+<a class="docside__i is-cur" href="INTEGRATION.html">Arakul Studio integration</a>
+<a class="docside__i" href="OVERVIEW.html">Kraul Engine — overview</a>
+<a class="docside__i" href="PERFORMANCE.html">Performance and resource management</a>
+<a class="docside__i" href="ROADMAP.html">Kraul Engine roadmap</a>
+<a class="docside__i" href="SECURITY.html">Security and privacy considerations</a>
+<a class="docside__i" href="STATUS.html">Kraul Engine — implementation status</a>
+<a class="docside__i" href="TESTING.html">Testing and quality strategy</a>
+</aside>
+</main>
+<footer class="docfoot"><span>© 2026 OuRi · Kraul Engine handbook</span><span class="muted sm">собрано из docs/INTEGRATION.md</span></footer>
+<script src="../js/qkc-core.js" defer></script>
+</body></html>

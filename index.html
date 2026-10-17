@@ -1,25 +1,49 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
-<meta name="description" content="Kraul Engine — the engine behind Arakul Studio. Image-processing workflows, engine architecture and dedicated API documentation.">
+<meta name="theme-color" content="#08080a">
+<meta name="description" content="Kraul Engine — the engine behind Arakul Studio. Image-processing workflows, engine architecture and dedicated API documentation. Monochrome, offline-first, zero dependencies.">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Kraul/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OuRi Corp">
 <meta property="og:title" content="Kraul Engine — the engine behind Arakul Studio">
 <meta property="og:description" content="Engine architecture, image-processing workflows and a dedicated API reference.">
-<meta property="og:type" content="website">
-<title>Kraul Engine — Arakul Studio engine</title>
-<style>
-:root{color-scheme:dark;--bg:#050907;--panel:#0b1510;--panel2:#102019;--text:#ecfff3;--muted:#8eaa99;--line:#1b3a29;--accent:#39f58a;--accentText:#041109;--warn:#f5d66e}
-
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:radial-gradient(ellipse at 78% -15%,rgba(35,255,126,.17),transparent 42%),var(--bg);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration-color:var(--muted);text-underline-offset:4px}a:hover{text-decoration-color:var(--accent)}button{font:inherit;cursor:pointer}.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.topin{max-width:1180px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:-.04em}.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--accent);color:var(--accentText);font-size:15px;font-weight:900}.brand span:last-child{font-size:18px}.brand small{display:block;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}.nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.nav a{font-size:13px;color:var(--muted);text-decoration:none}.theme{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:9px;padding:7px 10px;font-size:12px}.wrap{max-width:1180px;margin:auto;padding:0 24px}.hero{padding:86px 0 58px;display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.15em}.dot{width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 18px var(--accent)}h1{font-size:clamp(44px,6vw,78px);line-height:.99;letter-spacing:-.065em;margin:20px 0 22px;max-width:760px}h1 em{font-style:normal;color:var(--accent)}.lead{max-width:690px;color:var(--muted);font-size:18px}.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:27px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 15px;border-radius:11px;border:1px solid var(--line);text-decoration:none;font-weight:700;font-size:13px;transition:transform .18s,border-color .18s}.btn:hover{transform:translateY(-2px);border-color:var(--accent)}.btn.primary{background:var(--accent);color:var(--accentText);border-color:var(--accent)}.heroCard{border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,var(--panel2),var(--panel));padding:25px;box-shadow:0 25px 80px #0002}.cardTop{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px}.pill{border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.glyph{margin:30px auto 20px;width:154px;height:154px;border:1px solid #39f58a55;border-radius:38px;display:grid;place-items:center;position:relative;transform:rotate(-8deg);background:linear-gradient(140deg,#39f58a20,#39f58a08)}.glyph:before,.glyph:after{content:"";position:absolute;inset:17px;border:1px solid #39f58a44;border-radius:28px}.glyph:after{inset:37px;border-radius:19px;background:var(--accent);opacity:.12}.glyph b{font-size:48px;color:var(--accent);transform:rotate(8deg);z-index:1}.cardFoot{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px}.section{padding:54px 0;border-top:1px solid var(--line)}.sectionHead{max-width:750px;margin-bottom:25px}.sectionHead .eyebrow{margin-bottom:12px}h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.045em;line-height:1.12;margin:0 0 14px}.sub{color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--panel);min-width:0}.card .num{font-size:11px;letter-spacing:.12em;color:var(--accent);font-weight:800}.card h3{font-size:18px;letter-spacing:-.025em;margin:10px 0}.card p{font-size:14px;color:var(--muted);margin:0}.tag{display:inline-block;margin-top:16px;border:1px solid var(--line);border-radius:7px;padding:4px 7px;color:var(--muted);font-size:11px}.notice{border-left:3px solid var(--warn);padding:14px 17px;background:color-mix(in srgb,var(--warn) 7%,var(--panel));border-radius:0 10px 10px 0;color:var(--muted);font-size:13px}.apiGrid{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.apiList{display:grid;gap:8px}.apiList a{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-decoration:none;font-size:13px}.apiList a:hover{border-color:var(--accent)}.apiDetail{border:1px solid var(--line);border-radius:15px;padding:23px;background:var(--panel)}.apiDetail h3{margin-top:0}.code{font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:15px;overflow:auto;color:var(--muted)}.code strong{color:var(--accent)}.status{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.status div{padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:12px;color:var(--muted)}.status b{display:block;color:var(--text);font-size:13px;margin-bottom:4px}.status .planned{color:var(--warn)}footer{padding:28px 0 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.footlinks{display:flex;gap:15px;flex-wrap:wrap}@media(max-width:850px){.hero{grid-template-columns:1fr;gap:30px;padding-top:55px}.heroCard{max-width:520px}.grid{grid-template-columns:1fr 1fr}.apiGrid{grid-template-columns:1fr}.status{grid-template-columns:1fr 1fr}.nav a{display:none}}@media(max-width:540px){.wrap{padding:0 17px}.topin{padding:11px 17px}.hero{padding-top:43px}.grid{grid-template-columns:1fr}.cardFoot{flex-direction:column}.status{grid-template-columns:1fr 1fr}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.btn:hover{transform:none}}
-</style>
+<meta property="og:url" content="https://spaj7468-cell.github.io/Kraul/">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kraul Engine — the engine behind Arakul Studio">
+<meta name="twitter:description" content="Engine architecture, image-processing workflows and a dedicated API reference.">
+<meta name="twitter:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap"></noscript>
+<link rel="stylesheet" href="css/qkc-core.css">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="top"><div class="topin">
 <a class="brand" href="#top"><span class="mark">K</span><span>KRAUL<small>ENGINE / DOCS</small></span></a>
-<nav class="nav" aria-label="Main navigation"><a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#api">API reference</a><a href="#status">Status</a><a class="theme" href="#documentation-library">Documentation library ↓</a></nav>
+<nav class="nav" id="navLinks" aria-label="Main navigation"><a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#api">API reference</a><a href="#status">Status</a></nav>
+<button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></button>
+<button class="icon-btn nav__burger" id="btnBurger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.8" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div></header>
-<main id="top">
+<main id="main">
 <div class="wrap hero">
 <div><span class="eyebrow"><span class="dot"></span> OuRi engineering · documentation foundation</span>
 <h1>The engine behind <em>Arakul Studio.</em></h1>
@@ -31,10 +55,10 @@
 <section class="wrap section" aria-labelledby="kraul-start-title">
 <div class="sectionHead"><span class="eyebrow">Start here</span><h2 id="kraul-start-title">What can you do on this site?</h2><p class="sub">Kraul Engine is the technical documentation project associated with Arakul Studio. Use this site to understand the intended scope, inspect API documentation and follow implementation status. It is not the image-editing workspace itself.</p></div>
 <div class="grid">
-<article class="card"><span class="num">01 · UNDERSTAND</span><h3>Explore the engine</h3><p>Read the overview and separate implemented behavior from planned scope.</p><a class="btn" style="margin-top:16px" href="#overview">Read overview →</a></article>
-<article class="card"><span class="num">02 · INTEGRATE</span><h3>Find API guidance</h3><p>Review the integration and API documentation before connecting another app.</p><a class="btn" style="margin-top:16px" href="#api">Explore API →</a></article>
-<article class="card"><span class="num">03 · CREATE</span><h3>Open Arakul Studio</h3><p>For the user-facing workspace and available tools, open Arakul Studio.</p><a class="btn" style="margin-top:16px" href="https://spaj7468-cell.github.io/Arakul/">Open Arakul →</a></article>
-</div><div class="notice" style="margin-top:14px"><strong>Status note:</strong> documentation describes scope and intended interfaces; do not treat a documented or planned workflow as implemented unless the current code and tests confirm it.</div>
+<article class="card"><span class="num">01 · UNDERSTAND</span><h3>Explore the engine</h3><p>Read the overview and separate implemented behavior from planned scope.</p><a class="btn" class="btn cardbtn" href="#overview">Read overview →</a></article>
+<article class="card"><span class="num">02 · INTEGRATE</span><h3>Find API guidance</h3><p>Review the integration and API documentation before connecting another app.</p><a class="btn" class="btn cardbtn" href="#api">Explore API →</a></article>
+<article class="card"><span class="num">03 · CREATE</span><h3>Open Arakul Studio</h3><p>For the user-facing workspace and available tools, open Arakul Studio.</p><a class="btn" class="btn cardbtn" href="https://spaj7468-cell.github.io/Arakul/">Open Arakul →</a></article>
+</div><div class="notice notice--mt"><strong>Status note:</strong> documentation describes scope and intended interfaces; do not treat a documented or planned workflow as implemented unless the current code and tests confirm it.</div>
 </section>
 <section class="wrap section" id="overview"><div class="sectionHead"><span class="eyebrow">01 / overview</span><h2>One engine. Its own technical home.</h2><p class="sub">Arakul Studio is the workspace users interact with. Kraul Engine is the separate engine layer intended to provide reusable processing capabilities and a documented API.</p></div>
 <div class="grid">
@@ -47,7 +71,7 @@
 <article class="card"><span class="num">A · INPUT</span><h3>Input contract</h3><p>Document accepted image sources, file types, dimensions, color formats, validation and input limits.</p></article>
 <article class="card"><span class="num">B · PROCESS</span><h3>Processing pipeline</h3><p>Map the actual processing steps, dependencies, intermediate representations and failure points.</p></article>
 <article class="card"><span class="num">C · OUTPUT</span><h3>Output contract</h3><p>Specify output formats, transparency behavior, quality controls, metadata handling and error results from real code.</p></article>
-</div><div class="notice" style="margin-top:14px"><strong>Accuracy rule:</strong> this page is the documentation foundation. It does not claim that a particular model, endpoint, method, file format or processing pipeline is already implemented.</div></section>
+</div><div class="notice notice--mt"><strong>Accuracy rule:</strong> this page is the documentation foundation. It does not claim that a particular model, endpoint, method, file format or processing pipeline is already implemented.</div></section>
 <section class="wrap section" id="api"><div class="sectionHead"><span class="eyebrow">03 / API reference</span><h2>Kraul API, documented precisely.</h2><p class="sub">API pages will be filled from the engine's actual exported functions and contracts. No invented method names or signatures.</p></div>
 <div class="apiGrid"><nav class="apiList" aria-label="API documentation links"><a href="https://github.com/spaj7468-cell/Kraul/blob/main/docs/API.md">API reference · docs/API.md ↗</a><a href="https://github.com/spaj7468-cell/Kraul/blob/main/docs/ARCHITECTURE.md">Architecture · docs/ARCHITECTURE.md ↗</a><a href="https://github.com/spaj7468-cell/Kraul/blob/main/docs/STATUS.md">Implementation status · docs/STATUS.md ↗</a></nav>
 <div class="apiDetail"><h3>What every API entry should include</h3><div class="code"><strong>Export / method</strong>  exact name from source
@@ -55,7 +79,7 @@
 <strong>Output</strong>          exact return shape and encoding
 <strong>Errors</strong>          validation and failure behavior
 <strong>Example</strong>        runnable, source-verified usage
-<strong>Status</strong>         implemented / in progress / planned</div><p class="sub" style="margin-top:13px;font-size:13px">When the source code is available, this section can be expanded into a full reference with signatures, examples and compatibility notes.</p></div></div></section>
+<strong>Status</strong>         implemented / in progress / planned</div><p class="sub sub--note">When the source code is available, this section can be expanded into a full reference with signatures, examples and compatibility notes.</p></div></div></section>
 <section class="wrap section" id="status"><div class="sectionHead"><span class="eyebrow">04 / status</span><h2>Clear status, no fake promises.</h2><p class="sub">The repository has just received its documentation foundation. The labels below describe documentation status, not a claim that the engine's processing features are complete.</p></div>
 <div class="status"><div><b>Documented</b>Project relationship and intended scope</div><div><b>Being established</b>Repository documentation structure</div><div><b class="planned">Needs source audit</b>Actual API names and contracts</div><div><b class="planned">Needs source audit</b>Implemented processing features</div></div></section>
 
@@ -95,10 +119,10 @@
 <article class="card" id="status-guide"><span class="num">14 · STATUS</span><h3>Implementation status</h3><p>Что уже подтверждено в репозитории, а что пока задумано, не реализовано или требует проверки.</p><a class="tag" href="docs/STATUS.html">Full guide ↗</a></article>
 </div></section>
 
-<div class="notice" style="margin-top:16px"><strong>Evidence first:</strong> this handbook is substantially expanded, but Kraul's current repository does not yet contain the engine runtime source. The guides do not pretend that proposed workflows or APIs are already implemented.</div>
+<div class="notice" class="btn cardbtn"><strong>Evidence first:</strong> this handbook is substantially expanded, but Kraul's current repository does not yet contain the engine runtime source. The guides do not pretend that proposed workflows or APIs are already implemented.</div>
 </section>
 
 </main>
 <footer><div class="wrap foot"><span>© 2026 OuRi · Kraul Engine documentation foundation</span><div class="footlinks"><a href="https://github.com/spaj7468-cell/Kraul">Kraul repository</a><a href="https://spaj7468-cell.github.io/Arakul/">Arakul Studio</a><a href="https://spaj7468-cell.github.io/ouri-corp/">OuRi Corp</a><a href="https://spaj7468-cell.github.io/qkc-engine/">QKC Engine</a></div></div></footer>
-<script>(function(){var b=document.getElementById('themeBtn');if(!b)return;b.addEventListener('click',function(){var d=document.documentElement;d.setAttribute('data-theme',d.getAttribute('data-theme')==='light'?'dark':'light');});})();</script>
+<script src="js/qkc-core.js" defer></script>
 </body></html>

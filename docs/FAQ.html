@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<meta name="description" content="No. Arakul Studio is the user-facing workspace. Kraul Engine is the separate engine project associated with it.">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Kraul/docs/FAQ.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OuRi Corp">
+<meta property="og:title" content="Kraul Engine FAQ">
+<meta property="og:description" content="No. Arakul Studio is the user-facing workspace. Kraul Engine is the separate engine project associated with it.">
+<meta property="og:url" content="https://spaj7468-cell.github.io/Kraul/docs/FAQ.html">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="stylesheet" href="../css/qkc-core.css">
+<link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="docnav">
+  <a class="brand" href="../index.html"><span class="mark">K</span><span class="brand__name">Kraul · docs</span></a>
+  <div class="docnav__right">
+    <button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></button>
+    <a class="btn btn--sm btn--ghost" href="../index.html">← Kraul home</a>
+  </div>
+</header>
+<main id="main" class="docwrap">
+<article class="doc">
+<h1 id="kraul-engine-faq">Kraul Engine FAQ</h1>
+<h2 id="is-kraul-engine-the-same-thing-as-arakul-studio">Is Kraul Engine the same thing as Arakul Studio?</h2>
+<p>No. Arakul Studio is the user-facing workspace. Kraul Engine is the separate engine project associated with it.</p>
+<h2 id="is-kraul-an-image-processing-engine-already">Is Kraul an image-processing engine already?</h2>
+<p>The project is intended for image-processing workflows, but the current repository tree contains documentation and the site workflow rather than engine source code. Actual processing functionality is therefore not verified by this repository's current contents.</p>
+<h2 id="does-kraul-support-background-removal">Does Kraul support background removal?</h2>
+<p>Background removal is part of the stated project scope. Do not treat it as an available API until implementation code and repeatable tests demonstrate it.</p>
+<h2 id="what-are-the-exact-api-methods">What are the exact API methods?</h2>
+<p>The current repository does not provide engine source exports to inspect, so exact public method names and signatures cannot responsibly be stated yet. The API reference is prepared to record them once implementation exists.</p>
+<h2 id="why-does-docker-build-the-project">Why does Docker build the project?</h2>
+<p>Docker runs Jekyll to build the documentation site for GitHub Pages. That build is separate from the runtime engine and does not prove image-processing code works.</p>
+<h2 id="does-a-green-actions-check-mean-the-site-is-deployed">Does a green Actions check mean the site is deployed?</h2>
+<p>A successful build step alone is not sufficient. The workflow must upload the Pages artifact and complete a deployment job. Check the run's build and deploy jobs, then verify the live URL.</p>
+<h2 id="is-qkc-engine-part-of-kraul">Is QKC Engine part of Kraul?</h2>
+<p>No. QKC Engine is a separate JavaScript quiz/test engine. It has its own API, tests and documentation site.</p>
+<h2 id="how-should-a-new-feature-be-documented">How should a new feature be documented?</h2>
+<p>Document the exact API contract, input validation, output, errors, limits, a runnable example, tests and implementation status. Keep planned features visibly separate from working features.</p>
+<h2 id="where-is-the-live-documentation">Where is the live documentation?</h2>
+<ul>
+<li><a href="https://spaj7468-cell.github.io/Kraul/">Kraul Engine documentation</a></li>
+<li><a href="https://github.com/spaj7468-cell/Kraul">Kraul GitHub repository</a></li>
+<li><a href="https://spaj7468-cell.github.io/Arakul/">Arakul Studio</a></li>
+<li><a href="https://spaj7468-cell.github.io/qkc-engine/">QKC Engine</a></li>
+</ul>
+</article>
+<aside class="docside" aria-label="Other guides">
+<a class="docside__i" href="API.html">Kraul Engine API reference</a>
+<a class="docside__i" href="ARCHITECTURE.html">Kraul Engine architecture</a>
+<a class="docside__i" href="CONTRIBUTING.html">Contributing to Kraul Engine</a>
+<a class="docside__i" href="ERROR_MODEL.html">Error model and recovery</a>
+<a class="docside__i is-cur" href="FAQ.html">Kraul Engine FAQ</a>
+<a class="docside__i" href="GETTING_STARTED.html">Kraul Engine — getting started</a>
+<a class="docside__i" href="GLOSSARY.html">Kraul Engine glossary</a>
+<a class="docside__i" href="IMAGE_WORKFLOWS.html">Image-processing workflows and contracts</a>
+<a class="docside__i" href="INTEGRATION.html">Arakul Studio integration</a>
+<a class="docside__i" href="OVERVIEW.html">Kraul Engine — overview</a>
+<a class="docside__i" href="PERFORMANCE.html">Performance and resource management</a>
+<a class="docside__i" href="ROADMAP.html">Kraul Engine roadmap</a>
+<a class="docside__i" href="SECURITY.html">Security and privacy considerations</a>
+<a class="docside__i" href="STATUS.html">Kraul Engine — implementation status</a>
+<a class="docside__i" href="TESTING.html">Testing and quality strategy</a>
+</aside>
+</main>
+<footer class="docfoot"><span>© 2026 OuRi · Kraul Engine handbook</span><span class="muted sm">собрано из docs/FAQ.md</span></footer>
+<script src="../js/qkc-core.js" defer></script>
+</body></html>
