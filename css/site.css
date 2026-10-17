@@ -1,0 +1,157 @@
+/* Kraul Engine — монохромный слой поверх QKC Core (был: black × emerald) */
+
+/* ---------- шапка ---------- */
+.top{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:color-mix(in srgb,var(--bg) 78%,transparent);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.topin{ max-width:var(--maxw); margin:auto; padding:12px var(--gap); display:flex; align-items:center; justify-content:space-between; gap:18px; min-height:var(--nav-h) }
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:800; letter-spacing:-.04em }
+.mark{
+  display:grid; place-items:center; width:34px; height:34px; border-radius:11px;
+  background:var(--text); color:var(--bg); font-size:15px; font-weight:900; font-family:var(--font-d);
+}
+.brand > span:last-child{ font-size:18px; font-family:var(--font-d); line-height:1.05 }
+.brand small{ display:block; color:var(--muted); font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase }
+.nav{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-left:auto }
+/* внутренний nav Kraul не должен наследовать fixed-позиционирование коревого .nav */
+.top .nav{ position:static; height:auto; backdrop-filter:none; -webkit-backdrop-filter:none; background:none; border-bottom:0 }
+.nav a{ font-size:13px; color:var(--muted); text-decoration:none; padding:7px 10px; border-radius:999px; transition:color .2s,background .2s }
+.nav a:hover{ color:var(--text); background:var(--surface2) }
+
+/* ---------- hero ---------- */
+main{ position:relative; z-index:3 }
+.wrap{ max-width:var(--maxw); margin:auto; padding:0 var(--gap) }
+.hero{ padding:calc(var(--nav-h) + 64px) 0 58px; display:grid; grid-template-columns:1.25fr .75fr; gap:48px; align-items:center }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:9px; color:var(--muted);
+  font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.15em;
+}
+.dot{ width:7px; height:7px; background:var(--text); border-radius:50% }
+h1{ font-family:var(--font-d); font-size:clamp(44px,6vw,78px); line-height:.99; letter-spacing:-.055em; margin:20px 0 22px; max-width:760px; font-weight:700 }
+h1 em{
+  font-style:normal; display:inline-block; background:var(--text); color:var(--bg);
+  padding:.02em .16em .06em; border-radius:.16em;
+}
+:root[data-theme="light"] h1 em{ background:var(--text); color:var(--inv-text) }
+.lead{ max-width:690px; color:var(--text2); font-size:18px; line-height:1.65 }
+.actions{ display:flex; gap:11px; flex-wrap:wrap; margin-top:27px }
+
+/* ---------- кнопки ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  padding:11px 16px; border-radius:999px; border:1px solid var(--line2); background:transparent;
+  text-decoration:none; font-weight:700; font-size:13px; color:var(--text);
+  transition:transform .18s var(--ease),border-color .18s,background .2s,color .2s;
+}
+.btn:hover{ transform:translateY(-2px); border-color:var(--text2) }
+.btn.primary{ background:var(--text); color:var(--bg); border-color:var(--text) }
+.btn.primary:hover{ box-shadow:0 10px 30px -12px rgba(255,255,255,.35) }
+.cardbtn{ margin-top:16px }
+
+/* ---------- hero-карточка ---------- */
+.heroCard{
+  border:1px solid var(--line); border-radius:22px; padding:25px;
+  background:linear-gradient(145deg,var(--surface2),var(--surface)); box-shadow:var(--shadow);
+}
+.cardTop{ display:flex; justify-content:space-between; gap:12px; align-items:center; border-bottom:1px solid var(--line); padding-bottom:18px; font-family:var(--font-mono); font-size:.9rem }
+.pill{ border:1px solid var(--line2); border-radius:999px; padding:5px 9px; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-family:var(--font) }
+.glyph{
+  margin:30px auto 20px; width:154px; height:154px; border:1px solid var(--line2); border-radius:38px;
+  display:grid; place-items:center; position:relative; transform:rotate(-8deg);
+  background:linear-gradient(140deg,var(--surface2),transparent);
+}
+.glyph:before,.glyph:after{ content:""; position:absolute; inset:17px; border:1px solid var(--line); border-radius:28px }
+.glyph:after{ inset:37px; border-radius:19px; background:var(--text); opacity:.10 }
+.glyph b{ font-size:48px; color:var(--text); transform:rotate(8deg); z-index:1; font-family:var(--font-d) }
+.cardFoot{ display:flex; justify-content:space-between; gap:12px; color:var(--muted); font-size:12px; letter-spacing:.06em }
+
+/* ---------- секции ---------- */
+.section{ padding:54px 0; border-top:1px solid var(--line) }
+.sectionHead{ max-width:750px; margin-bottom:25px }
+.sectionHead .eyebrow{ margin-bottom:12px }
+h2{ font-family:var(--font-d); font-size:clamp(28px,4vw,42px); letter-spacing:-.04em; line-height:1.12; margin:0 0 14px; font-weight:700 }
+.sub{ color:var(--muted); margin:0; line-height:1.65 }
+.sub--note{ margin-top:13px; font-size:13px }
+
+/* ---------- карточки ---------- */
+.grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px }
+.card{
+  padding:22px; border:1px solid var(--line); border-radius:16px; min-width:0;
+  background:linear-gradient(180deg,var(--surface),var(--bg2));
+  transition:border-color .25s,transform .25s var(--ease),box-shadow .25s;
+}
+.card:hover{ border-color:var(--line2); transform:translateY(-3px); box-shadow:var(--shadow) }
+.card .num{ font-size:11px; letter-spacing:.12em; color:var(--muted2); font-weight:800; font-family:var(--font-mono) }
+.card h3{ font-family:var(--font-d); font-size:18px; letter-spacing:-.02em; margin:10px 0; font-weight:600 }
+.card p{ font-size:14px; color:var(--muted); margin:0; line-height:1.6 }
+.tag{
+  display:inline-block; margin-top:16px; border:1px solid var(--line); border-radius:7px;
+  padding:4px 8px; color:var(--text2); font-size:11px; text-decoration:none; transition:border-color .2s,color .2s;
+}
+a.tag:hover{ border-color:var(--line2); color:var(--text) }
+
+/* ---------- notice ---------- */
+.notice{
+  border-left:3px solid var(--text); padding:14px 17px; background:var(--surface2);
+  border-radius:0 10px 10px 0; color:var(--text2); font-size:13px; line-height:1.6;
+}
+.notice strong{ color:var(--text) }
+.notice--mt{ margin-top:14px }
+
+/* ---------- API ---------- */
+.apiGrid{ display:grid; grid-template-columns:.8fr 1.2fr; gap:18px }
+.apiList{ display:grid; gap:8px }
+.apiList a{
+  padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:var(--surface);
+  text-decoration:none; font-size:13px; color:var(--text2); transition:border-color .2s,color .2s;
+}
+.apiList a:hover{ border-color:var(--line2); color:var(--text) }
+.apiDetail{ border:1px solid var(--line); border-radius:15px; padding:23px; background:var(--surface) }
+.apiDetail h3{ margin-top:0; font-family:var(--font-d) }
+.code{
+  font:12px/1.8 var(--font-mono); background:var(--bg2); border:1px solid var(--line);
+  border-radius:10px; padding:15px; overflow:auto; color:var(--text2); white-space:pre;
+}
+.code strong{ color:var(--text) }
+
+/* ---------- статус ---------- */
+.status{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px }
+.status div{ padding:14px; border:1px solid var(--line); border-radius:10px; background:var(--surface); font-size:12px; color:var(--muted); line-height:1.55 }
+.status b{ display:block; color:var(--text); font-size:13px; margin-bottom:4px }
+.status .planned{ color:var(--muted); font-style:italic }
+
+/* ---------- футер ---------- */
+footer{ padding:28px 0 40px; color:var(--muted); font-size:12px; border-top:1px solid var(--line); margin-top:40px; position:relative; z-index:3 }
+.foot{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap }
+.footlinks{ display:flex; gap:15px; flex-wrap:wrap }
+.foot a{ color:var(--text2); text-decoration:none } .foot a:hover{ color:var(--text) }
+
+/* ---------- ссылки в тексте ---------- */
+main a{ text-underline-offset:4px; text-decoration-color:var(--muted2) }
+main a:hover{ text-decoration-color:var(--text) }
+
+/* ---------- адаптив ---------- */
+@media (max-width:850px){
+  .hero{ grid-template-columns:1fr; gap:30px; padding-top:calc(var(--nav-h) + 34px) }
+  .heroCard{ max-width:520px }
+  .grid{ grid-template-columns:1fr 1fr }
+  .apiGrid{ grid-template-columns:1fr }
+  .status{ grid-template-columns:1fr 1fr }
+  .nav{ display:none }
+  .nav.is-open{
+    display:flex; flex-direction:column; align-items:stretch; position:absolute;
+    top:var(--nav-h); left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line);
+    padding:10px var(--gap) 16px; margin:0;
+  }
+  .nav__burger{ display:inline-flex }
+}
+@media (min-width:851px){ .nav__burger{ display:none } }
+@media (max-width:540px){
+  .hero{ padding-top:calc(var(--nav-h) + 20px) }
+  .grid{ grid-template-columns:1fr }
+  .cardFoot{ flex-direction:column }
+  .status{ grid-template-columns:1fr 1fr }
+}

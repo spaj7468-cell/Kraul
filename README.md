@@ -1,6 +1,6 @@
 # Kraul Engine
 
-**Black × emerald engineering identity. The engine project associated with Arakul Studio.**
+**Monochrome engineering identity (QKC design system). The engine project associated with Arakul Studio.**
 
 Kraul Engine is intended to own reusable image-processing workflows, engine architecture and its technical API. Arakul Studio is the user-facing workspace; Kraul is a separate technical project.
 

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<meta name="description" content="Status: contributor guide for the repository as it currently exists. This is not a claim that a distributable engine package or stable runtime API already exists.">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Kraul/docs/GETTING_STARTED.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OuRi Corp">
+<meta property="og:title" content="Kraul Engine — getting started">
+<meta property="og:description" content="Status: contributor guide for the repository as it currently exists. This is not a claim that a distributable engine package or stable runtime API already exists.">
+<meta property="og:url" content="https://spaj7468-cell.github.io/Kraul/docs/GETTING_STARTED.html">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="stylesheet" href="../css/qkc-core.css">
+<link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="docnav">
+  <a class="brand" href="../index.html"><span class="mark">K</span><span class="brand__name">Kraul · docs</span></a>
+  <div class="docnav__right">
+    <button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></button>
+    <a class="btn btn--sm btn--ghost" href="../index.html">← Kraul home</a>
+  </div>
+</header>
+<main id="main" class="docwrap">
+<article class="doc">
+<h1 id="kraul-engine-getting-started">Kraul Engine — getting started</h1>
+<blockquote>
+<p>Status: contributor guide for the repository as it currently exists. This is not a claim that a distributable engine package or stable runtime API already exists.</p>
+</blockquote>
+<h2 id="1-understand-the-project-boundary">1. Understand the project boundary</h2>
+<p>Kraul Engine is the engine project associated with <a href="https://spaj7468-cell.github.io/Arakul/">Arakul Studio</a>. Arakul is the user-facing workspace. Kraul is intended to own reusable image-processing logic, processing contracts, technical implementation and API documentation.</p>
+<p>The current repository contains a documentation website and Markdown documents. Before treating Kraul as an installable library, first locate or add the actual runtime source, package metadata, tests and a reproducible build.</p>
+<h2 id="2-repository-map">2. Repository map</h2>
+<ul>
+<li>index.html — documentation landing page.</li>
+<li>README.md — project entry point and documentation map.</li>
+<li>docs/OVERVIEW.md — purpose, terminology and boundaries.</li>
+<li>docs/ARCHITECTURE.md — architecture decision record and target module boundaries.</li>
+<li>docs/API.md — rules for recording verified public APIs.</li>
+<li>docs/IMAGE_WORKFLOWS.md — image-processing contracts and workflow design.</li>
+<li>docs/INTEGRATION.md — integration boundary with Arakul Studio.</li>
+<li>docs/ERROR_MODEL.md — error taxonomy and recovery principles.</li>
+<li>docs/TESTING.md — verification strategy.</li>
+<li>docs/SECURITY.md — input, privacy and resource-safety considerations.</li>
+<li>docs/PERFORMANCE.md — benchmark methodology and performance investigation.</li>
+<li>docs/STATUS.md — implementation evidence and status labels.</li>
+<li>docs/ROADMAP.md — staged engineering roadmap.</li>
+<li>docs/CONTRIBUTING.md — contribution and documentation rules.</li>
+<li>docs/GLOSSARY.md — shared terminology.</li>
+<li>docs/FAQ.md — common questions and current limitations.</li>
+</ul>
+<h2 id="3-first-time-contributor-checklist">3. First-time contributor checklist</h2>
+<ol>
+<li>Read the overview and status table.</li>
+<li>Inspect the complete repository tree before adding implementation claims.</li>
+<li>Identify the runtime language, entry points, package/build files and existing tests.</li>
+<li>Write down the exact public exports and call sites before changing the API reference.</li>
+<li>Add a minimal reproducible test for each new behavior.</li>
+<li>Update the API reference, examples, changelog and status table together.</li>
+<li>Run the relevant tests and record the exact command and result.</li>
+<li>Verify the documentation build and deployed Pages URL.</li>
+</ol>
+<h2 id="4-what-a-real-quick-start-needs">4. What a real quick-start needs</h2>
+<p>A production quick-start should specify a supported installation method, runtime requirements, the exact import or script URL, one minimal working example, expected output, error handling and cleanup. Those details must be added only after the actual runtime entry point and distribution strategy exist.</p>
+<p>Do not copy a speculative snippet into an application and assume it works. This repository's documentation is intentionally explicit about the difference between a design contract and verified executable code.</p>
+<h2 id="5-current-limitations">5. Current limitations</h2>
+<ul>
+<li>The repository currently has no engine source files in its tracked tree; its present contents are documentation and the Pages workflow.</li>
+<li>Exact API names, supported formats, runtime dependencies and processing behavior therefore remain unverified here.</li>
+<li>Background removal, foreground isolation and alpha-channel workflows are project scope, not verified implementation claims.</li>
+<li>Docker/Jekyll is used to build the documentation site; it is not itself the image-processing engine.</li>
+</ul>
+<h2 id="6-definition-of-ready">6. Definition of ready</h2>
+<p>A feature is ready to document as implemented when a reviewer can find its source, invoke it through a documented interface, run a repeatable test, inspect the result and understand its failure behavior. A landing page or successful documentation build alone does not satisfy this requirement.</p>
+</article>
+<aside class="docside" aria-label="Other guides">
+<a class="docside__i" href="API.html">Kraul Engine API reference</a>
+<a class="docside__i" href="ARCHITECTURE.html">Kraul Engine architecture</a>
+<a class="docside__i" href="CONTRIBUTING.html">Contributing to Kraul Engine</a>
+<a class="docside__i" href="ERROR_MODEL.html">Error model and recovery</a>
+<a class="docside__i" href="FAQ.html">Kraul Engine FAQ</a>
+<a class="docside__i is-cur" href="GETTING_STARTED.html">Kraul Engine — getting started</a>
+<a class="docside__i" href="GLOSSARY.html">Kraul Engine glossary</a>
+<a class="docside__i" href="IMAGE_WORKFLOWS.html">Image-processing workflows and contracts</a>
+<a class="docside__i" href="INTEGRATION.html">Arakul Studio integration</a>
+<a class="docside__i" href="OVERVIEW.html">Kraul Engine — overview</a>
+<a class="docside__i" href="PERFORMANCE.html">Performance and resource management</a>
+<a class="docside__i" href="ROADMAP.html">Kraul Engine roadmap</a>
+<a class="docside__i" href="SECURITY.html">Security and privacy considerations</a>
+<a class="docside__i" href="STATUS.html">Kraul Engine — implementation status</a>
+<a class="docside__i" href="TESTING.html">Testing and quality strategy</a>
+</aside>
+</main>
+<footer class="docfoot"><span>© 2026 OuRi · Kraul Engine handbook</span><span class="muted sm">собрано из docs/GETTING_STARTED.md</span></footer>
+<script src="../js/qkc-core.js" defer></script>
+</body></html>

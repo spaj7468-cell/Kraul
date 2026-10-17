@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<meta name="description" content="This document defines what must be specified and verified for image workflows. It does not claim that these processing features are already implemented.">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Kraul/docs/IMAGE_WORKFLOWS.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OuRi Corp">
+<meta property="og:title" content="Image-processing workflows and contracts">
+<meta property="og:description" content="This document defines what must be specified and verified for image workflows. It does not claim that these processing features are already implemented.">
+<meta property="og:url" content="https://spaj7468-cell.github.io/Kraul/docs/IMAGE_WORKFLOWS.html">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="stylesheet" href="../css/qkc-core.css">
+<link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="docnav">
+  <a class="brand" href="../index.html"><span class="mark">K</span><span class="brand__name">Kraul · docs</span></a>
+  <div class="docnav__right">
+    <button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></button>
+    <a class="btn btn--sm btn--ghost" href="../index.html">← Kraul home</a>
+  </div>
+</header>
+<main id="main" class="docwrap">
+<article class="doc">
+<h1 id="image-processing-workflows-and-contracts">Image-processing workflows and contracts</h1>
+<blockquote>
+<p>This document defines what must be specified and verified for image workflows. It does not claim that these processing features are already implemented.</p>
+</blockquote>
+<h2 id="1-workflow-model">1. Workflow model</h2>
+<p>A reliable image-processing workflow can be documented as a sequence of explicit stages:</p>
+<ol>
+<li><strong>Acquire</strong> — receive a file, blob, byte buffer, URL or decoded image, depending on what the implementation actually supports.</li>
+<li><strong>Validate</strong> — reject missing, malformed, oversized or unsupported inputs before expensive work begins.</li>
+<li><strong>Normalize</strong> — establish a documented pixel representation, color space, orientation policy and alpha convention.</li>
+<li><strong>Process</strong> — run the selected operation using the real implementation and its declared dependencies.</li>
+<li><strong>Compose</strong> — combine the processed foreground, mask or other intermediate data only when the operation requires it.</li>
+<li><strong>Encode</strong> — serialize the result into a supported output representation.</li>
+<li><strong>Return</strong> — deliver a typed result, progress information if supported, and actionable error details.</li>
+<li><strong>Release</strong> — free object URLs, temporary buffers, workers or other resources owned by the workflow.</li>
+</ol>
+<p>The actual Kraul implementation may use a different sequence. Update this description after source code and tests establish the real data flow.</p>
+<h2 id="2-input-contract-checklist">2. Input contract checklist</h2>
+<p>Every operation should define accepted input types and ownership; supported formats and detection behavior; whether MIME type, file extension or decoded content is authoritative; maximum file size and dimensions where limits exist; handling for animated images, metadata, color profiles and orientation; behavior for corrupt files; and whether remote URLs are allowed.</p>
+<p>Do not silently equate a filename extension with validated content.</p>
+<h2 id="3-alpha-and-transparency">3. Alpha and transparency</h2>
+<p>Transparency must be described precisely. Record whether alpha is straight or premultiplied at each boundary, whether RGB values under fully transparent pixels are preserved or normalized, and how antialiased edges are represented.</p>
+<p>Visual tests should include:
+- opaque foreground against a contrasting background;
+- fine hair, fur, leaves or other thin edges;
+- semi-transparent glass or soft edges;
+- dark foreground on dark background and light foreground on light background;
+- transparent output opened over both light and dark canvases;
+- repeated encode/decode cycles to expose halos or color shifts.</p>
+<p>Do not claim edge quality, losslessness or support for a particular format without reproducible tests.</p>
+<h2 id="4-masks-and-foreground-isolation">4. Masks and foreground isolation</h2>
+<p>If the implementation produces a mask, document its data type, dimensions, channel layout, value range and interpretation. State whether white means keep or remove, how soft boundaries are encoded, and how mask dimensions map to the source image.</p>
+<p>If a foreground-isolation operation returns a cutout, specify whether the result contains an alpha channel, a separate mask, or both. Do not invent an API shape before inspecting the implementation.</p>
+<h2 id="5-output-contract">5. Output contract</h2>
+<p>For each output type, record exact MIME type and extension; pixel dimensions and color-space behavior; alpha-channel preservation; metadata retention or stripping; compression settings and quality controls; output size limits; and whether the returned object is a file, blob, URL, buffer or another structure.</p>
+<h2 id="6-repeatability-and-cancellation">6. Repeatability and cancellation</h2>
+<p>If an operation is deterministic, test identical inputs across repeated runs and supported environments. If it is nondeterministic, document the source of variation.</p>
+<p>Cancellation and progress must be documented only if the implementation exposes them. Specify cancellation timing, cleanup behavior, and whether partial output can be returned. A UI spinner is not proof that processing progress is measurable.</p>
+<h2 id="7-workflow-acceptance-criteria">7. Workflow acceptance criteria</h2>
+<p>A workflow is accepted only when valid inputs produce a documented output; invalid inputs fail predictably; limits are enforced before unbounded allocation; alpha and color behavior are tested; resource cleanup is tested; examples use the actual public interface; and status documentation points to evidence.</p>
+<h2 id="8-known-status">8. Known status</h2>
+<p>The current Kraul repository documents image processing, background removal, foreground isolation and alpha-channel handling as intended scope. The actual engine source is not present in the current repository tree, so none of these workflows should be marked implemented on documentation alone.</p>
+</article>
+<aside class="docside" aria-label="Other guides">
+<a class="docside__i" href="API.html">Kraul Engine API reference</a>
+<a class="docside__i" href="ARCHITECTURE.html">Kraul Engine architecture</a>
+<a class="docside__i" href="CONTRIBUTING.html">Contributing to Kraul Engine</a>
+<a class="docside__i" href="ERROR_MODEL.html">Error model and recovery</a>
+<a class="docside__i" href="FAQ.html">Kraul Engine FAQ</a>
+<a class="docside__i" href="GETTING_STARTED.html">Kraul Engine — getting started</a>
+<a class="docside__i" href="GLOSSARY.html">Kraul Engine glossary</a>
+<a class="docside__i is-cur" href="IMAGE_WORKFLOWS.html">Image-processing workflows and contracts</a>
+<a class="docside__i" href="INTEGRATION.html">Arakul Studio integration</a>
+<a class="docside__i" href="OVERVIEW.html">Kraul Engine — overview</a>
+<a class="docside__i" href="PERFORMANCE.html">Performance and resource management</a>
+<a class="docside__i" href="ROADMAP.html">Kraul Engine roadmap</a>
+<a class="docside__i" href="SECURITY.html">Security and privacy considerations</a>
+<a class="docside__i" href="STATUS.html">Kraul Engine — implementation status</a>
+<a class="docside__i" href="TESTING.html">Testing and quality strategy</a>
+</aside>
+</main>
+<footer class="docfoot"><span>© 2026 OuRi · Kraul Engine handbook</span><span class="muted sm">собрано из docs/IMAGE_WORKFLOWS.md</span></footer>
+<script src="../js/qkc-core.js" defer></script>
+</body></html>

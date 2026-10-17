@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<meta name="description" content="Status: target architecture and audit checklist. The current repository tree does not contain engine runtime modules. This document records boundaries and questions to answer, not ">
+<link rel="canonical" href="https://spaj7468-cell.github.io/Kraul/docs/ARCHITECTURE.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OuRi Corp">
+<meta property="og:title" content="Kraul Engine architecture">
+<meta property="og:description" content="Status: target architecture and audit checklist. The current repository tree does not contain engine runtime modules. This document records boundaries and questions to answer, not ">
+<meta property="og:url" content="https://spaj7468-cell.github.io/Kraul/docs/ARCHITECTURE.html">
+<meta property="og:image" content="https://spaj7468-cell.github.io/Kraul/assets/icon-512.png">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon.png">
+<link rel="stylesheet" href="../css/qkc-core.css">
+<link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i id="scrollBar"></i></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="docnav">
+  <a class="brand" href="../index.html"><span class="mark">K</span><span class="brand__name">Kraul · docs</span></a>
+  <div class="docnav__right">
+    <button class="icon-btn" id="btnTheme" title="Toggle theme" aria-label="Toggle colour theme" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg></button>
+    <a class="btn btn--sm btn--ghost" href="../index.html">← Kraul home</a>
+  </div>
+</header>
+<main id="main" class="docwrap">
+<article class="doc">
+<h1 id="kraul-engine-architecture">Kraul Engine architecture</h1>
+<blockquote>
+<p><strong>Status: target architecture and audit checklist.</strong> The current repository tree does not contain engine runtime modules. This document records boundaries and questions to answer, not a fabricated description of existing implementation internals.</p>
+</blockquote>
+<h2 id="1-system-boundary">1. System boundary</h2>
+<p>Kraul is intended to be the reusable engine layer associated with Arakul Studio. Arakul owns the user-facing workspace and interaction patterns. Kraul should own engine-level processing contracts and the behavior exposed to callers. QKC Engine is a separate project and must not be treated as a Kraul dependency.</p>
+<h2 id="2-proposed-conceptual-layers">2. Proposed conceptual layers</h2>
+<p>These are conceptual responsibilities, not existing source folders:</p>
+<ol>
+<li><strong>Public facade</strong> — stable entry points and API validation.</li>
+<li><strong>Input adapters</strong> — accepted image source types and format decoding.</li>
+<li><strong>Processing operations</strong> — concrete algorithms that actually exist in the implementation.</li>
+<li><strong>Output adapters</strong> — result encoding and export.</li>
+<li><strong>Runtime coordination</strong> — asynchronous work, cancellation and resource lifecycle if supported.</li>
+<li><strong>Diagnostics</strong> — structured safe errors and measurable operation stages.</li>
+<li><strong>Integration adapter</strong> — mapping between Arakul UI actions and engine contracts.</li>
+<li><strong>Tests and fixtures</strong> — reproducible verification of contracts and image output.</li>
+</ol>
+<p>Do not create abstractions before a real operation requires them. The architecture should follow working behavior, not the reverse.</p>
+<h2 id="3-data-flow-record">3. Data-flow record</h2>
+<p>For every operation, trace:
+- where input originates;
+- where type, format and dimension checks occur;
+- how decoding and normalization work;
+- which processing stages run and in what order;
+- whether intermediate buffers are copied or transferred;
+- how output is encoded;
+- which component owns cleanup;
+- how failure and cancellation propagate.</p>
+<h2 id="4-runtime-decisions-that-need-evidence">4. Runtime decisions that need evidence</h2>
+<p>Record the actual runtime and module system; browser or server requirements; external dependencies; whether processing is local or remote; use of workers or services; supported file formats; build and distribution outputs; and version compatibility. Do not infer these from the documentation site's Dockerfile.</p>
+<h2 id="5-resource-ownership">5. Resource ownership</h2>
+<p>Every buffer, worker, object URL, temporary file and processing job should have a clearly defined owner. Ownership should remain clear after errors, cancellation, repeated user actions and component teardown.</p>
+<h2 id="6-arakul-integration-boundary">6. Arakul integration boundary</h2>
+<p>The studio should call Kraul through a documented adapter rather than scattering undocumented engine-specific assumptions across UI components. Integration must define input/output ownership, error translation, version expectations and cancellation behavior. Exact calls remain unverified until source exists.</p>
+<h2 id="7-quality-attributes">7. Quality attributes</h2>
+<h3 id="correctness">Correctness</h3>
+<p>The same documented input should obey the declared contract. Determinism should be claimed only when tested.</p>
+<h3 id="reliability">Reliability</h3>
+<p>Malformed inputs and environmental failures should fail predictably without corrupting unrelated state.</p>
+<h3 id="performance">Performance</h3>
+<p>Measure decode, process and encode stages separately. Avoid unsupported speed claims.</p>
+<h3 id="privacy">Privacy</h3>
+<p>State whether inputs remain local or leave the device. Never promise local-only behavior without inspecting runtime and network behavior.</p>
+<h3 id="maintainability">Maintainability</h3>
+<p>Keep the public facade small, internal operations testable and docs tied to actual exports.</p>
+<h2 id="8-architecture-decision-records">8. Architecture decision records</h2>
+<p>For every significant design decision, record the context, options considered, chosen option, trade-offs, status and date. Revisit decisions when the actual runtime or processing approach changes.</p>
+<h2 id="9-current-evidence-gap">9. Current evidence gap</h2>
+<p>The current tracked tree contains README, documentation Markdown, the HTML documentation page and a Docker/Jekyll workflow. No processing modules, package manifest or engine tests are present. The architecture is therefore documented as a target and audit framework until implementation is committed.</p>
+</article>
+<aside class="docside" aria-label="Other guides">
+<a class="docside__i" href="API.html">Kraul Engine API reference</a>
+<a class="docside__i is-cur" href="ARCHITECTURE.html">Kraul Engine architecture</a>
+<a class="docside__i" href="CONTRIBUTING.html">Contributing to Kraul Engine</a>
+<a class="docside__i" href="ERROR_MODEL.html">Error model and recovery</a>
+<a class="docside__i" href="FAQ.html">Kraul Engine FAQ</a>
+<a class="docside__i" href="GETTING_STARTED.html">Kraul Engine — getting started</a>
+<a class="docside__i" href="GLOSSARY.html">Kraul Engine glossary</a>
+<a class="docside__i" href="IMAGE_WORKFLOWS.html">Image-processing workflows and contracts</a>
+<a class="docside__i" href="INTEGRATION.html">Arakul Studio integration</a>
+<a class="docside__i" href="OVERVIEW.html">Kraul Engine — overview</a>
+<a class="docside__i" href="PERFORMANCE.html">Performance and resource management</a>
+<a class="docside__i" href="ROADMAP.html">Kraul Engine roadmap</a>
+<a class="docside__i" href="SECURITY.html">Security and privacy considerations</a>
+<a class="docside__i" href="STATUS.html">Kraul Engine — implementation status</a>
+<a class="docside__i" href="TESTING.html">Testing and quality strategy</a>
+</aside>
+</main>
+<footer class="docfoot"><span>© 2026 OuRi · Kraul Engine handbook</span><span class="muted sm">собрано из docs/ARCHITECTURE.md</span></footer>
+<script src="../js/qkc-core.js" defer></script>
+</body></html>
