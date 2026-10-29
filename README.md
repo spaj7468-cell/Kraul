@@ -69,3 +69,10 @@ The documentation site is built with Docker and Jekyll and published through Git
 The next substantive engine milestone is not another marketing page: add the actual runtime source, select the supported runtime/distribution model, expose one small verified operation, and test it end-to-end. Then replace the API placeholders with exact signatures and executable examples.
 
 © 2026 OuRi project ecosystem.
+
+## Авторы
+
+| Роль | Автор | Профиль |
+|------|-------|---------|
+| Автор | **telrino** | <https://vk.ru/telrino> |
+| Соавтор | **Бро** | <https://vk.ru/id920684081> |
